@@ -23,11 +23,21 @@ for i in range(0, 9, 3):
 player = "X"
 
 # Take turns
-for turn in range(6):
+for turn in range(9):
 
     position = int(input(f"Player {player}, enter the position (1-9): "))
 
-    numbers[position - 1] = player
+    if numbers[position-1] !='X' and numbers[position-1] !='O':
+        numbers[position - 1] = player
+
+        # Switch player
+        if player == "X":
+            player = "O"
+        else:
+            player = "X"
+    else:
+        print("Position already occupied")
+
 
     # Display updated board
     print()
@@ -36,8 +46,3 @@ for turn in range(6):
         print(f"{numbers[i]} | {numbers[i+1]} | {numbers[i+2]}")
         print("----------")
 
-    # Switch player
-    if player == "X":
-        player = "O"
-    else:
-        player = "X"
