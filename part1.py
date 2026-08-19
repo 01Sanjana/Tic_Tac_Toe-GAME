@@ -53,33 +53,42 @@ def play_game():
     # Take turns
     for turn in range(9):
 
-        position = int(input(f"Player {player}, enter the position (1-9): "))
+        try:
+            position = int(input(f"Player {player}, enter the position (1-9): "))
 
-        # Check if position is available
-        if numbers[position - 1] != "X" and numbers[position - 1] != "O":
+            # Check if position is between 1 and 9
+            if position < 1 or position > 9:
+                print("Invalid position! Please enter a number from 1 to 9.")
+                continue
 
-            numbers[position - 1] = player
+            # Check if position is available
+            if numbers[position - 1] != "X" and numbers[position - 1] != "O":
 
-            print()
-            display_board()
+                numbers[position - 1] = player
 
-            # Check for winner
-            if check_winner():
-                print(f"Player {player} wins!")
-                return
+                print()
+                display_board()
 
-            # Switch player
-            if player == "X":
-                player = "O"
+                # Check for winner
+                if check_winner():
+                    print(f"Player {player} wins!")
+                    return
+
+                # Switch player
+                if player == "X":
+                    player = "O"
+                else:
+                    player = "X"
+
             else:
-                player = "X"
+                print("Position already occupied!")
 
-        else:
-            print("Position already occupied!")
+        except ValueError:
+            print("Invalid input! Please enter a number from 1 to 9.")
+            continue
 
     # If all 9 turns are completed without a winner
     print("It is a Tie/Draw!")
-
 
 # Play the game
 while True:
