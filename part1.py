@@ -81,4 +81,13 @@ def play_game():
     print("It is a Tie/Draw!")
 
 
-play_game()
+# Play the game
+while True:
+
+    play_game()
+
+    choice = input("Do you want to play again? (yes/no): ")
+
+    if choice.lower() != "yes":
+        print("Thanks for playing!")
+        break
