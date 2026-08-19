@@ -3,7 +3,9 @@
 ---------
 4 | 5 | 6
 ---------
-7 | 8 | 9   '''
+7 | 8 | 9
+'''
+
 
 numbers = []
 
@@ -49,12 +51,15 @@ def play_game():
     display_board()
 
     player = "X"
+    turn = 0
 
     # Take turns
-    for turn in range(9):
+    while turn < 9:
 
         try:
-            position = int(input(f"Player {player}, enter the position (1-9): "))
+            position = int(
+                input(f"Player {player}, enter the position (1-9): ")
+            )
 
             # Check if position is between 1 and 9
             if position < 1 or position > 9:
@@ -65,6 +70,9 @@ def play_game():
             if numbers[position - 1] != "X" and numbers[position - 1] != "O":
 
                 numbers[position - 1] = player
+
+                # Count only valid moves
+                turn += 1
 
                 print()
                 display_board()
@@ -85,10 +93,10 @@ def play_game():
 
         except ValueError:
             print("Invalid input! Please enter a number from 1 to 9.")
-            continue
 
-    # If all 9 turns are completed without a winner
+    # If all 9 valid moves are completed without a winner
     print("It is a Tie/Draw!")
+
 
 # Play the game
 while True:
